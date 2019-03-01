@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4123578251875408}
   - component: {fileID: 198198086167497732}
   - component: {fileID: 199433188311749764}
-  - component: {fileID: 114070141367475994}
+  - component: {fileID: 54600118465323304}
   m_Layer: 0
   m_Name: GlowPowerupBigGreen
   m_TagString: Untagged
@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 1054081094007342}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4832571979343968}
   - {fileID: 4224781576463148}
@@ -197,17 +197,21 @@ Transform:
   m_Father: {fileID: 4123578251875408}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114070141367475994
-MonoBehaviour:
+--- !u!54 &54600118465323304
+Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054081094007342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f18ba310b6d2b0a42963b510b0b6d47b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!198 &198119819560421790
 ParticleSystem:
   m_ObjectHideFlags: 1

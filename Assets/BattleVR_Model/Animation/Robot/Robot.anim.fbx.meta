@@ -104,6 +104,7 @@ ModelImporter:
     7400004: Skill
     7400006: Damage
     7400008: ToGround
+    7400010: Death
     9500000: //RootNode
   externalObjects: {}
   materials:

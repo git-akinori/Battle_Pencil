@@ -47,14 +47,14 @@ public class SoundManager : MonoBehaviour {
     }
 
 
-    public void PlayeSE(string seName)
+    public void PlayeSE(string seName, AudioSource audioSource)
     {
         if (!ses.ContainsKey(seName))
         {
             Debug.Log("そのSEはありません。");
             return;
         }
-        SeSource.PlayOneShot(ses[seName]);
+        audioSource.PlayOneShot(ses[seName]);
     }
 
     public void PlayeBgm(string bgmName)
