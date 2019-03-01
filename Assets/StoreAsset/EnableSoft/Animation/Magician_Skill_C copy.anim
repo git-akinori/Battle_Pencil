@@ -44325,7 +44325,8 @@ AnimationClip:
   - time: 0
     functionName: CreateE
     data: GlowZoneGreen
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 1888494454553362, guid: 3008ea4923c1ed9489177b2cbec76581,
+      type: 2}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

@@ -10,7 +10,7 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	public OperatorController NonActiveController { get; set; }
 
 	public BattleContext BattleContext { get; private set; }
-    
+
 	protected override void Awake() {
 		base.Awake();
 
@@ -57,12 +57,24 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 	}
 
 	// 出目が異なる値かチェック
-	public bool CheckEachOutcomeDifferent() {
+	//public bool CheckEachOutcomeDifferent() {
 
-		var playerOutcome = OperatorManager.Instance.PlayerController.OperatorModel.pencil.Outcome;
-		var cpuOutcome = OperatorManager.Instance.ComputerController.OperatorModel.pencil.Outcome;
+	//	var playerOutcome = OperatorManager.Instance.PlayerController.OperatorModel.pencil.Outcome;
+	//	var cpuOutcome = OperatorManager.Instance.ComputerController.OperatorModel.pencil.Outcome;
 
-		return playerOutcome != cpuOutcome;
+	//	return playerOutcome != cpuOutcome;
+	//}
+
+	public void StartBattle() {
+		StartCoroutine(StartBattleCoroutine());
+	}
+
+	public IEnumerator StartBattleCoroutine() {
+		while (BattleContext.CurrentState != BattleContext.stateWait) {
+			yield return null;
+		}
+
+		BattleContext.ChangeState(BattleContext.stateFight);
 	}
 
 	// 攻守交代
@@ -70,13 +82,13 @@ public class BattleManager : BaseSingletonMono<BattleManager> {
 		ActiveController.StopThrow();
 
 		if (ActiveController == ControllerList[0]) {
-            var tmp = ActiveController;
+			var tmp = ActiveController;
 			ActiveController = ControllerList[1];
 			NonActiveController = tmp;
 		}
 		else if (ActiveController == ControllerList[1]) {
-            var tmp = ActiveController;
-            ActiveController = ControllerList[0];
+			var tmp = ActiveController;
+			ActiveController = ControllerList[0];
 			NonActiveController = tmp;
 		}
 

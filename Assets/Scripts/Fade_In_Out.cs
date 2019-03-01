@@ -29,34 +29,37 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
         a_color = 0;
     }
 
-    public IEnumerator FadeIO(float outSpeed, float keepTime, float inSpeed, System.Action corInKeep)
+    public IEnumerator FadeIO(float fadeSpeed, float keepSeconds, System.Action corInKeep, System.Action corInEnd)
     {
-		var cor = StartCoroutine(FadeOut(outSpeed));
+		var cor = StartCoroutine(FadeOut(fadeSpeed));
 		yield return cor;
 
-		cor = StartCoroutine(FadeKeep(keepTime / 2));
+		cor = StartCoroutine(FadeKeep(keepSeconds / 2));
 		yield return cor;
 
 		corInKeep();
 		yield return new WaitForEndOfFrame();
 
-		cor = StartCoroutine(FadeKeep(keepTime / 2));
+		cor = StartCoroutine(FadeKeep(keepSeconds / 2));
 		yield return cor;
 
-		cor = StartCoroutine(FadeIn(inSpeed));
+		cor = StartCoroutine(FadeIn(fadeSpeed));
 		yield return cor;
+
+		corInEnd();
 	}
 
-    public void StartFade(float outTime, float keepTime, float inTime, System.Action corInKeep)
+    public void StartFade(float fadeSpeed, float keepSeconds, System.Action corInKeep, System.Action corInEnd)
     {
-		StartCoroutine(FadeIO(outTime, keepTime, inTime, corInKeep));
+		StartCoroutine(FadeIO(fadeSpeed, keepSeconds, corInKeep, corInEnd));
     }
 
     
 
-    public IEnumerator FadeOut(float _speed )
-    {
-        while (true)
+    public IEnumerator FadeOut(float _speed ) {
+		a_color = 0;
+
+		while (true)
         {
             GetComponent<Image>().color = new Color(red, green, blue, a_color);
             a_color += _speed * Time.deltaTime;
@@ -64,9 +67,7 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
             if (a_color >= 1)
             {
                 a_color = 1;
-                alfaFrag = false;
-                phase = 2;
-                Debug.Log("OUT");
+                //Debug.Log("OUT");
                 
                 break;
             }
@@ -80,7 +81,7 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
         while (true)
         {
             GetComponent<Image>().color = new Color(red, green, blue, 255);
-            Debug.Log("KEEP");
+            //Debug.Log("KEEP");
             keepTime -= 1 * Time.deltaTime;
 
             if (keepTime <= 0)
@@ -96,6 +97,8 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
     }
     public IEnumerator FadeIn(float _speed)
     {
+		a_color = 1;
+
         while (true)
         {
             GetComponent<Image>().color = new Color(red, green, blue, a_color);
@@ -104,9 +107,7 @@ public class Fade_In_Out : BaseSingletonMono<Fade_In_Out> {
             if (a_color <= 0)
             {
                 a_color = 0;
-                alfaFrag = false;
-                Debug.Log("IN");
-                once = false;
+                //Debug.Log("IN");
                 break;
             }
             yield return null;

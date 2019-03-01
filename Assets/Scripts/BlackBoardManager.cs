@@ -24,14 +24,10 @@ public class BlackBoardManager : BaseSingletonMono<BlackBoardManager> {
 
 	List<GameObject> activeCanvasList = new List<GameObject>();
 
-	protected override void Awake() {
+	protected void Awake() {
 		base.Awake();
 
 		ChangeCanvas(ECanvasType.Title);
-	}
-
-	void Start() {
-
 	}
 
 	// Canvas切り替え

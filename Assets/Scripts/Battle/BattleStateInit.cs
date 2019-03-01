@@ -18,7 +18,7 @@ public class BattleStateInit : IState<BattleContext> {
 		// 初期化完了したなら
 		if (Init()) {
 			// 攻守決定ステートへ遷移
-			context.ChangeState(context.stateFight);
+			context.ChangeState(context.stateWait);
 		}
 	}
 
@@ -30,7 +30,6 @@ public class BattleStateInit : IState<BattleContext> {
 	/// 初期化処理
 	/// </summary>
 	bool Init() {
-
 		if (BattleManager.Instance.ActiveController != null && BattleManager.Instance.NonActiveController != null
 			&& OperatorManager.Instance.PlayerController.OperatorModel.pencil != null
 			&& OperatorManager.Instance.ComputerController.OperatorModel.pencil != null) {

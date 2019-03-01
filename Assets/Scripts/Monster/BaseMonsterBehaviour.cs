@@ -19,11 +19,14 @@ public class BaseMonsterBehaviour : MonoBehaviour
         _Animator = GetComponent<Animator>();
     }
 
-    void Start() {
-		operatorModel = GetComponentInParent<OperatorController>().OperatorModel;
-		operatorModel.monsterBehaviour = this;
-        //operatorModel.monsterUI.Init();
-    }
+    void Start()
+    {
+        monsterModel.maxHP = monsterModel.hp;
+
+        operatorModel = GetComponentInParent<OperatorController>().OperatorModel;
+        operatorModel.monsterBehaviour = this;
+		operatorModel.monsterUI.Init();
+	}
 
     public void Damage(int damage)
     {

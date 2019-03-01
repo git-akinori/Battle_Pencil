@@ -43,12 +43,12 @@ public class MonsterGlass : MonoBehaviour {
             Debug.Log(monsterObj.name);
             SoundManager.Instance.PlayeSE(selectClip.name);
 
-
-
-			Fade_In_Out.Instance.StartFade(1, 3, 1, () => {
+			Fade_In_Out.Instance.StartFade(1, 3, () => {
 				BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Battle);
 				MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
 				PositionManager.Instance.ChangePosition(0, 1);
+			}, () => {
+				BattleManager.Instance.StartBattle();
 			});
 
         }

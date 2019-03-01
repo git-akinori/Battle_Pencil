@@ -21,6 +21,7 @@ public class MySceneManager : BaseSingletonMono<MySceneManager> {
 
 	protected override void Awake() {
 		base.Awake();
+		MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Title);
 	}
 
 	private void Start() {

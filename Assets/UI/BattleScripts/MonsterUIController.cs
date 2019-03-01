@@ -10,6 +10,9 @@ public class MonsterUIController : MonoBehaviour
         PlayerUI, ComputerUI
     }
 
+	[SerializeField]
+	Color skillColor;
+
     [SerializeField]
     EOperatorUI operatorUI;
 
@@ -52,10 +55,6 @@ public class MonsterUIController : MonoBehaviour
 
         operatorModel.monsterUI = this;
 
-		yield return new WaitForSeconds(0.1f);
-
-		Init();
-
         SkillSelect(0);
     }
 
@@ -78,10 +77,12 @@ public class MonsterUIController : MonoBehaviour
             }
             else if (operatorModel.monsterBehaviour.MonsterModel.skillList[i].skillType == SkillType.SKILL)
             {
+				uiModel.skillTexts[i].color = skillColor;
+
                 if (operatorModel.monsterBehaviour.MonsterModel.type == Type.ATTACK)
                     uiModel.skillTexts[i].text = "あいてに" + operatorModel.monsterBehaviour.MonsterModel.skillList[i].power + "ダメージ";
                 else if (operatorModel.monsterBehaviour.MonsterModel.type == Type.DEFENCE)
-                    uiModel.skillTexts[i].text = "カウンター";
+                    uiModel.skillTexts[i].text = "てきのこうげきを 倍返し";
                 else if (operatorModel.monsterBehaviour.MonsterModel.type == Type.HEAL)
                     uiModel.skillTexts[i].text = "たいりょくを" + operatorModel.monsterBehaviour.MonsterModel.skillList[i].power + "かいふく";
             }

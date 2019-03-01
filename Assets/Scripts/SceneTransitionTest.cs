@@ -15,14 +15,10 @@ public class SceneTransitionTest : MonoBehaviour {
 	[SerializeField]
 	Button resultButton;
 
-	void Start () {
+	void Start() {
 		titleButton.gameObject.SetActive(false);
 		battleButton.gameObject.SetActive(true);
 		resultButton.gameObject.SetActive(false);
-
-		BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Title);
-		MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Title);
-		PositionManager.Instance.ChangePosition(0, 0);
 
 		titleButton.OnClickAsObservable().Subscribe(_ => {
 			titleButton.gameObject.SetActive(false);
@@ -34,13 +30,15 @@ public class SceneTransitionTest : MonoBehaviour {
 
 		battleButton.OnClickAsObservable().Subscribe(_ => {
 			DataManager.Instance.SetPlayerPencil(2);
+			battleButton.gameObject.SetActive(false);
 
-			Fade_In_Out.Instance.StartFade(1, 3, 1, () => {
-				battleButton.gameObject.SetActive(false);
+			Fade_In_Out.Instance.StartFade(1, 3, () => {
 				BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Battle);
 				MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
 				PositionManager.Instance.ChangePosition(0, 1);
 				resultButton.gameObject.SetActive(true);
+			}, () => {
+				BattleManager.Instance.StartBattle();
 			});
 		});
 
@@ -49,15 +47,5 @@ public class SceneTransitionTest : MonoBehaviour {
 			resultButton.gameObject.SetActive(false);
 			titleButton.gameObject.SetActive(true);
 		});
-	}
-
-	IEnumerator FadeCoroutine() {
-		DataManager.Instance.SetPlayerPencil(1);
-		BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Battle);
-		resultButton.gameObject.SetActive(true);
-		MySceneManager.Instance.ChangeScene(MySceneManager.ESceneType.Battle);
-		battleButton.gameObject.SetActive(false);
-		PositionManager.Instance.ChangePosition(0, 1);
-		yield return new WaitForSeconds(3);
 	}
 }

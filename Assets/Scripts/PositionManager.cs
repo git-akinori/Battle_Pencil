@@ -13,6 +13,12 @@ public class PositionManager : BaseSingletonMono<PositionManager> {
 	[SerializeField]
 	List<ObjPosContainer> objPosContainers;
 
+	protected void Awake() {
+		base.Awake();
+
+		ChangePosition(0, 0);
+	}
+
 	public void ChangePosition(int containerIndex, int posIndex) {
 		var container = objPosContainers[containerIndex];
 		container.obj.transform.position = container.posList[posIndex];
