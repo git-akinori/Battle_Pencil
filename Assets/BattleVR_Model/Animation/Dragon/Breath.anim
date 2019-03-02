@@ -36365,12 +36365,12 @@ AnimationClip:
   m_Events:
   - time: 1
     functionName: OnSe
-    data: 
+    data: _dora_sukiru
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.15
+  - time: 1.1833333
     functionName: CreateSkillEffect
     data: FlamethrowerPointyYellow
     objectReferenceParameter: {fileID: 0}

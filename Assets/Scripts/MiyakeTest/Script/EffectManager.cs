@@ -22,7 +22,7 @@ public class EffectManager : BaseSingletonMono<EffectManager> {
         foreach (GameObject effect in effectList)
         {
             effects[effect.name] = effect;
-            Debug.Log("effect" + effect.name);
+            Debug.Log("effectName" + effect.name);
         }
     }
 

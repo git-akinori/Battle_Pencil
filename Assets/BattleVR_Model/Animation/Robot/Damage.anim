@@ -29448,7 +29448,7 @@ AnimationClip:
     messageOptions: 0
   - time: 0.7083333
     functionName: OnSe
-    data: 
+    data: _robo_hidame
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

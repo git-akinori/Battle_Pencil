@@ -22133,7 +22133,7 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: OnSe
-    data: 
+    data: _robo_lose
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
