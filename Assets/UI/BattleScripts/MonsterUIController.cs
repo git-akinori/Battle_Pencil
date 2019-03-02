@@ -112,7 +112,7 @@ public class MonsterUIController : MonoBehaviour
 
     public void SkillDecision()
     {
-        IsDecision = false;
+       // IsDecision = false;
 
         elapsedTime += Time.deltaTime;
         if (elapsedTime <= 1f)
@@ -129,10 +129,10 @@ public class MonsterUIController : MonoBehaviour
 
     public IEnumerator DamageCoroutine(int damage)
     {
-        if(operatorModel.monsterBehaviour.MonsterModel.hp - damage > 0)
-        {
-            operatorModel.monsterBehaviour._Animator.SetTrigger("DeathTrigger");
-        }
+        //if(operatorModel.monsterBehaviour.MonsterModel.hp - damage <= 0)
+        //{
+        //    operatorModel.monsterBehaviour._Animator.SetTrigger("DeathTrigger");
+        //}
 
         while (operatorModel.monsterBehaviour.MonsterModel.hp > 0 && damage != 0)
         {
@@ -156,14 +156,17 @@ public class MonsterUIController : MonoBehaviour
             }
             else if (operatorModel.monsterBehaviour.MonsterModel.hp < operatorModel.monsterBehaviour.MonsterModel.maxHP * (50f / 100f)) {
                 _color = new Color(1f, 1f, 0f);
-            }
+            }else 
+                _color = new Color(0f, 1f, 0f);
             
             uiModel.HPBar.transform.GetChild(1).GetComponentInChildren<Image>().color = _color;
             yield return new WaitForSeconds(0.001f);
         }
 
         if (operatorModel.monsterBehaviour.MonsterModel.hp > 0)
+        {
             BattleManager.Instance.BattleContext.isDone = true;
+        }
         else
         {
             BattleManager.Instance.GameFinish();

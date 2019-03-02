@@ -19,9 +19,9 @@ public class MonsterStateAttack : IState<MonsterContext>
 
     public void ExecuteUpdate(MonsterContext context)
     {
-        var anim = BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._Animator;
+        var anim = BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour._Animator;
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("AttackState") &&
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Damage") &&
             anim.IsInTransition(0))
         {
             //BattleManager.Instance.BattleContext.isDone = true;

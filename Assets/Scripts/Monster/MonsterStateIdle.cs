@@ -16,7 +16,8 @@ public class MonsterStateIdle : IState<MonsterContext> {
     public void ExecuteUpdate(MonsterContext context) {
         var active = BattleManager.Instance.ActiveController.OperatorModel;
 
-        active.monsterUI.SkillDecision();
+        if(!BattleManager.Instance.BattleContext.isEnd)
+            active.monsterUI.SkillDecision();
 
         if(active.monsterUI.IsDecision)
         // ActiveControllerの中のスキルタイプによって行動変更
@@ -28,10 +29,15 @@ public class MonsterStateIdle : IState<MonsterContext> {
             Debug.Log("MISS");
             active.monsterBehaviour.MonsterModel.isAttack = false;
             BattleManager.Instance.BattleContext.isDone = true;
+            context.ChangeState(context.stateIdle);
+                
         }
     }
 
 	public void ExecuteExit(MonsterContext context) {
         Debug.Log("[Exit] Monster State : Idol");
+
+        BattleManager.Instance.BattleContext.isEnd = true;
+        BattleManager.Instance.ActiveController.OperatorModel.monsterUI.IsDecision = false;
     }
 }

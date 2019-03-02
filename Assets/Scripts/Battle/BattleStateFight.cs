@@ -7,11 +7,7 @@ using UnityEngine;
 /// </summary>
 public class BattleStateFight : IState<BattleContext> {
 
-	bool isEnd = false;
-
-	public void IsEnd(bool b) { isEnd = b; }
-
-	int count = 600;
+    int count = 600;
 
 	public void ExecuteEntry(BattleContext context) {
 		Debug.LogWarning("[Entry] Battle State : Fight");
@@ -20,6 +16,8 @@ public class BattleStateFight : IState<BattleContext> {
         TurnUI.Instance.ChangeText(BattleManager.Instance.ActiveController);
         
 		count = 600;
+
+        context.isEnd = false;
 	}
 
 	public void ExecuteUpdate(BattleContext context) {

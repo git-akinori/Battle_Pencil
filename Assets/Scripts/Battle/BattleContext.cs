@@ -13,6 +13,8 @@ public class BattleContext {
 
 	public bool isDone = false;
 
+    public bool isEnd = false;
+
 	/// <summary>
 	/// 生成時
 	/// </summary>
@@ -37,9 +39,5 @@ public class BattleContext {
 		CurrentState = state;
 		isDone = false;
 		CurrentState.ExecuteEntry(this);
-	}
-
-	public void ToResult() {
-		(stateResult as BattleStateFight).IsEnd(true);
 	}
 }

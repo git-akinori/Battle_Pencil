@@ -21,7 +21,7 @@ public class MonsterStateSkill : IState<MonsterContext> {
                 active.monsterBehaviour._Animator.SetTrigger("SkillTrigger");
             }
             else {
-                //BattleManager.Instance.BattleContext.isDone = true;
+                BattleManager.Instance.BattleContext.isDone = true;
                 // ミスの時
                 context.ChangeState(context.stateIdle);
             }
@@ -31,12 +31,24 @@ public class MonsterStateSkill : IState<MonsterContext> {
     }
 
     public void ExecuteUpdate(MonsterContext context) {
-        var anim = BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._Animator;
+        var nonActive = BattleManager.Instance.NonActiveController.OperatorModel;
+        var active = BattleManager.Instance.ActiveController.OperatorModel;
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("SkillState") && anim.IsInTransition(0)) {
-
-            //BattleManager.Instance.BattleContext.isDone = true;
-            context.ChangeState(context.stateIdle);
+        // 魔法少女のスキル発動か否か
+        if (active.monsterBehaviour.MonsterModel.type == Type.HEAL)
+        {
+            if (active.monsterBehaviour._Animator.GetCurrentAnimatorStateInfo(0).IsName("SkillState") &&
+                active.monsterBehaviour._Animator.IsInTransition(0))
+            {
+                context.ChangeState(context.stateIdle);
+            }
+        }
+        else {
+            if (nonActive.monsterBehaviour._Animator.GetCurrentAnimatorStateInfo(0).IsName("Damage") &&
+                    nonActive.monsterBehaviour._Animator.IsInTransition(0)) {
+                //BattleManager.Instance.BattleContext.isDone = true;
+                context.ChangeState(context.stateIdle);
+            }
         }
     }
 
