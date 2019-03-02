@@ -41,7 +41,7 @@ public class MonsterGlass : MonoBehaviour {
 			DataManager.Instance.SetPlayerPencil(id);
 
             Debug.Log(monsterObj.name);
-            SoundManager.Instance.PlayeSE(selectClip.name);
+            SoundManager.Instance.PlayeSE(selectClip.name,GetComponent<AudioSource>());
 
 			Fade_In_Out.Instance.StartFade(1, 3, () => {
 				BlackBoardManager.Instance.ChangeCanvas(BlackBoardManager.ECanvasType.Battle);
