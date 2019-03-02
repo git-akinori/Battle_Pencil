@@ -43,8 +43,8 @@ public class OperatorManager : BaseSingletonMono<OperatorManager> {
 			yield return null;
 		}
 
-		context.ChangeState(context.stateDeath);
+		//context.ChangeState(context.stateDeath);
 
-		BattleManager.Instance.GameFinish();
+		//BattleManager.Instance.GameFinish();
 	}
 }

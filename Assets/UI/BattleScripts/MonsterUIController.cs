@@ -129,6 +129,11 @@ public class MonsterUIController : MonoBehaviour
 
     public IEnumerator DamageCoroutine(int damage)
     {
+        if(operatorModel.monsterBehaviour.MonsterModel.hp - damage > 0)
+        {
+            operatorModel.monsterBehaviour._Animator.SetTrigger("DeathTrigger");
+        }
+
         while (operatorModel.monsterBehaviour.MonsterModel.hp > 0 && damage != 0)
         {
             //　ダメージ量を10で割った商をHPから減らす
@@ -155,6 +160,13 @@ public class MonsterUIController : MonoBehaviour
             
             uiModel.HPBar.transform.GetChild(1).GetComponentInChildren<Image>().color = _color;
             yield return new WaitForSeconds(0.001f);
+        }
+
+        if (operatorModel.monsterBehaviour.MonsterModel.hp > 0)
+            BattleManager.Instance.BattleContext.isDone = true;
+        else
+        {
+            BattleManager.Instance.GameFinish();
         }
 
         yield return null;

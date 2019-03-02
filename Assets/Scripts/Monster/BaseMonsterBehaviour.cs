@@ -32,5 +32,4 @@ public class BaseMonsterBehaviour : MonoBehaviour
     {
         StartCoroutine(operatorModel.monsterUI.DamageCoroutine(damage));
     }
-
 }
