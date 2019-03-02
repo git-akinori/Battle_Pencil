@@ -37,8 +37,11 @@ public class TurnUI : BaseSingletonMono<TurnUI> {
     {
         if(oc == OperatorManager.Instance.PlayerController) {
             turnText.text = "自分のターンです";
-        }else if(oc == OperatorManager.Instance.ComputerController) {
+            turnText.color = new Color(0f, 1f, 0f, 1f);
+        }
+        else if(oc == OperatorManager.Instance.ComputerController) {
             turnText.text = "相手のターンです";
+            turnText.color = new Color(1f, 0f, 0f, 1f);
         }
         distance_two = Vector3.Distance(startPos.transform.position, exitPos.transform.position);
 
@@ -47,7 +50,7 @@ public class TurnUI : BaseSingletonMono<TurnUI> {
 
     IEnumerator TextDisplay()
     {
-        turnText.color = new Color(1f, 1f, 1f, 1f);
+        
         float elapsedTime = 0;
         while (true)
         {

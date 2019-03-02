@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 54555320203229078}
   - component: {fileID: 64070152240358280}
   - component: {fileID: 114169684346759362}
+  - component: {fileID: 114773955693079836}
   m_Layer: 8
   m_Name: DragonPencil
   m_TagString: Pencill
@@ -900,6 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2246f3e9ea20e54f96e89f70f3c504e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   monsterPrefab: {fileID: 1124199580446126, guid: 4e8ab3bf1f0c73c45af7a74b9c2596cc,
     type: 2}
 --- !u!114 &114499964049708812
@@ -950,6 +952,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   num: 1
+--- !u!114 &114773955693079836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014515606959756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65aa23f4bac3b0c43a2159e96a6497a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StandardPos: {fileID: 0}
+  marginalDistance: 7
 --- !u!114 &114822326612101508
 MonoBehaviour:
   m_ObjectHideFlags: 1
