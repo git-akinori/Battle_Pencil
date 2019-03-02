@@ -22,7 +22,7 @@ public class EffectManager : BaseSingletonMono<EffectManager> {
         foreach (GameObject effect in effectList)
         {
             effects[effect.name] = effect;
-            Debug.Log("eddebr"+effect.name);
+            Debug.Log("effectName" + effect.name);
         }
     }
 
@@ -33,17 +33,17 @@ public class EffectManager : BaseSingletonMono<EffectManager> {
             Debug.Log("その名前のエフェクはありません。");
           }
 
-        var effect = Instantiate<GameObject>(effects[effectName]as GameObject);
+        var effect = Instantiate(effects[effectName]as GameObject);
         effect.transform.position = createPosition;
         Destroy(effect,destryTime);
      }
 
     public void CreateMahou(string effectName, Transform parent, Vector3 createPosition, float destryTime)
     {
-        var effect = Instantiate<GameObject>(effects[effectName] as GameObject);
+        var effect = Instantiate(effects[effectName] as GameObject);
       //  effect.transform.rotation = parent.rotation;
         effect.transform.position = createPosition;
-        effect.GetComponent<Rigidbody>().AddForce(parent.transform.forward*48);// transform.position+=parent.transform.forward;
+        effect.GetComponent<Rigidbody>().AddForce(parent.transform.forward*120);// transform.position+=parent.transform.forward;
         Destroy(effect, destryTime);
 
 

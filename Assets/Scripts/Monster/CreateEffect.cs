@@ -15,7 +15,7 @@ public class CreateEffect : MonoBehaviour {
 
     public void CreateMahouBall(string effectName)
     {
-        EffectManager.Instance.CreateMahou(effectName,this.transform, AtackPosition.position, ballDestryTime);
+        EffectManager.Instance.CreateMahou(effectName,transform, AtackPosition.position, ballDestryTime);
 
     }
 
@@ -38,7 +38,7 @@ public class CreateEffect : MonoBehaviour {
 
     public void OnSe(string Name)
     {
-        SoundManager.Instance.PlayeSE(Name);
+        SoundManager.Instance.PlayeSE(Name, GetComponent<AudioSource>());
     }
     
  }
