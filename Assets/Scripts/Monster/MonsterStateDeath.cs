@@ -9,10 +9,12 @@ using UnityEngine;
 public class MonsterStateDeath : IState<MonsterContext> {
 
 	public void ExecuteEntry(MonsterContext context) {
+        var nonActive = BattleManager.Instance.NonActiveController.OperatorModel;
 
-	}
+        nonActive.monsterBehaviour._Animator.SetTrigger("DeathTrigger");
+    }
 
-	public void ExecuteUpdate(MonsterContext context) {
+    public void ExecuteUpdate(MonsterContext context) {
 
 	}
 

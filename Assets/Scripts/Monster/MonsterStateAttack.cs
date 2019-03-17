@@ -13,37 +13,36 @@ public class MonsterStateAttack : IState<MonsterContext>
         var active = BattleManager.Instance.ActiveController.OperatorModel;
         Debug.Log("[Entry] Monster State : Attack");
 
-        active.monsterBehaviour.MonsterModel.isAttack = true;
+        //active.monsterBehaviour.MonsterModel.isAttack = true;
         active.monsterBehaviour._Animator.SetTrigger("AttackTrigger");
     }
 
     public void ExecuteUpdate(MonsterContext context)
     {
-        var anim = BattleManager.Instance.ActiveController.OperatorModel.monsterBehaviour._Animator;
+        var anim = BattleManager.Instance.NonActiveController.OperatorModel.monsterBehaviour._Animator;
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("AttackState") &&
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Damage") &&
             anim.IsInTransition(0))
         {
-            BattleManager.Instance.BattleContext.isDone = true;
+            //BattleManager.Instance.BattleContext.isDone = true;
             context.ChangeState(context.stateIdle);
         }
     }
 
     public void ExecuteExit(MonsterContext context)
     {
-        var nonActive = BattleManager.Instance.NonActiveController.OperatorModel;
-        var active = BattleManager.Instance.ActiveController.OperatorModel;
+        //var nonActive = BattleManager.Instance.NonActiveController.OperatorModel;
+        //var active = BattleManager.Instance.ActiveController.OperatorModel;
 
-        //nonActive.monsterBehaviour.MonsterModel.hp -=
+        //nonActive.monsterBehaviour.Damage(active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
+
+        //nonActive.monsterBehaviour.MonsterModel.counterPower =
         //    active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
 
-        nonActive.monsterBehaviour.Damage(active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power);
+        //nonActive.monsterBehaviour._Animator.SetTrigger("DamageTrigger");
 
-        nonActive.monsterBehaviour.MonsterModel.counterPower =
-            active.monsterBehaviour.MonsterModel.skillList[active.pencil.Outcome - 1].power;
+        //Debug.Log("NonActiveMonsterのHP : " + nonActive.monsterBehaviour.MonsterModel.hp);
 
-        Debug.Log("NonActiveMonsterのHP : " + nonActive.monsterBehaviour.MonsterModel.hp);
-
-        Debug.Log("[Exit] Monster State : Attack");
+        //Debug.Log("[Exit] Monster State : Attack");
     }
 }

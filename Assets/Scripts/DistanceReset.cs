@@ -18,7 +18,7 @@ public class DistanceReset : MonoBehaviour {
     {
         Vector3 Bpos =this.transform.position;
         float dis = Vector3.Distance(Apos, Bpos);
-        Debug.Log("Distance : " + dis);
+        //Debug.Log("Distance : " + dis);
         if (marginalDistance <= dis)
         {
             Debug.Log("リセットォ！");
